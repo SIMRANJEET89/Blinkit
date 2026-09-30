@@ -1,10 +1,24 @@
 
+import { useEffect } from 'react';
 import {useLocation, Link} from 'react-router-dom'
+import { useGlobalContext } from '../Provider/GlobalProvider';
+
 
 
 const Success = () => {
     const location = useLocation()
     console.log(location);
+    const {fetchCartItem, fetchOrder} = useGlobalContext()
+
+    useEffect(() => {
+      if (fetchCartItem) {
+          fetchCartItem()        
+      }
+      if (fetchOrder) {
+        fetchOrder()
+        
+      }
+    },[])
     
   return (
     <div className='m-2 w-full max-w-md bg-green-200 p-4 mx-auto py-5 flex flex-col justify-center items-center gap-5'>
